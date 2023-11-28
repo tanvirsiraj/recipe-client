@@ -7,8 +7,18 @@ import { useContext } from "react";
 import DarkLightThemeToggle from "../../../DarkLightThemeToggle/DarkLightThemeToggle";
 import { SiCodechef } from "react-icons/si";
 const Navbar = () => {
-  const { user, theme } = useContext(AuthContext);
+  const { user, theme, logOut } = useContext(AuthContext);
   const [toggle, setToggle] = useState(true);
+
+  const handleLogout = () => {
+    logOut()
+      .then(() => {
+        // console.log("User Logout Successfully");
+      })
+      .catch((error) => {
+        // console.log(error.message);
+      });
+  };
 
   return (
     <div className="bg-primary-color dark:bg-black text-white  fixed top-0 z-50 w-full  shadow-lg">
@@ -22,7 +32,7 @@ const Navbar = () => {
         <ul
           className={
             toggle
-              ? "-left-[600px] z-20  duration-500 lg:duration-0  fixed  lg:static bg-primary-color text-white shadow-lg lg:shadow-none top-0 h-[100vh] lg:h-auto  max-w-[600px]  lg:w-auto  ps-4 pt-20 lg:pt-0 space-y-4 lg:space-y-0  lg:flex items-center lg:gap-14 dark:bg-black "
+              ? "-left-[600px] z-50  duration-500 lg:duration-0  fixed  lg:static bg-primary-color text-white shadow-lg lg:shadow-none top-0 h-[100vh] lg:h-auto  max-w-[600px]  lg:w-auto  ps-4 pt-20 lg:pt-0 space-y-4 lg:space-y-0  lg:flex items-center lg:gap-14 dark:bg-black "
               : " left-0 z-20 duration-1000 lg:duration-0 fixed lg:static bg-primary-color text-white lg:text-black  shadow-lg lg:shadow-none top-0 h-[100vh] lg:h-auto  w-48 md:w-80 lg:w-auto  ps-4 pt-20 lg:pt-0 space-y-4 lg:space-y-0  lg:flex items-center lg:gap-14 dark:bg-black dark:text-white"
           }
         >
@@ -58,7 +68,10 @@ const Navbar = () => {
                     </div>
                   </div>
                 </div>
-                <Link className="lg:hidden bg-white  text-primary-color px-4 py-2 rounded-md duration-500  font-semibold  ">
+                <Link
+                  onClick={handleLogout}
+                  className="lg:hidden bg-white  text-primary-color px-4 py-2 rounded-md duration-500  font-semibold  "
+                >
                   Logout
                 </Link>
               </div>
@@ -83,7 +96,10 @@ const Navbar = () => {
                     </div>
                   </div>
                 </div>
-                <Link className=" bg-white text-primary-content px-4 py-2 rounded-md duration-500  dark:bg-white  font-semibold">
+                <Link
+                  onClick={handleLogout}
+                  className=" bg-white px-4 py-2 rounded-md duration-500 text-black   font-semibold "
+                >
                   Logout
                 </Link>
               </div>

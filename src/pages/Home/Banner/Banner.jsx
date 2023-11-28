@@ -13,10 +13,10 @@ const Banner = () => {
             Welcome To Recipe World
           </h1>
           <p className="mb-2 md:mb-5 text-center md:text-base text-white flex items-center gap-2 justify-center">
-            <span className="flex items-center text-3xl  md:text-6xl font-bold gap-2 md:gap-4">
+            <span className="flex items-center text-3xl  md:text-6xl font-bold md:gap-4 ">
               Menu <FaHandPointRight />{" "}
             </span>
-            <span className="text-3xl md:text-6xl changingContent font-bold"></span>
+            <span className="text-3xl md:text-6xl changingContent font-bold "></span>
           </p>
           <p className="text-sm md:text-lg text-center  md:mt-4 mb-6 md:mb-10">
             Savor the extraordinary with our menu, a culinary journey of

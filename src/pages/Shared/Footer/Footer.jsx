@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <div className="mt-20">
+    <div className="">
       <footer className="footer footer-center py-10 bg-primary-color dark:bg-black text-primary-content">
         <div className="flex items-center gap-1">
           <SiCodechef className="text-white text-5xl font-logo" />
