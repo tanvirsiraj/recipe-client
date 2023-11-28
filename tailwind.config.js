@@ -6,6 +6,9 @@ export default {
       colors: {
         "primary-color": "#1A73E8",
       },
+      fontFamily: {
+        logo: "'Pacifico', cursive",
+      },
     },
   },
   plugins: [require("daisyui")],

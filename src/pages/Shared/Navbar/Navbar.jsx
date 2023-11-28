@@ -13,12 +13,9 @@ const Navbar = () => {
   return (
     <div className="bg-primary-color dark:bg-black text-white  fixed top-0 z-50 w-full  shadow-lg">
       <nav className="max-w-6xl mx-auto flex items-center justify-between py-4  text-white px-2 lg:px-0">
-        <div className="flex items-center gap-2">
-          <SiCodechef className="text-white text-3xl" />
-          <Link
-            to="#"
-            className="text-2xl lg:text-3xl font-logo underline text-white"
-          >
+        <div className="flex items-center gap-1">
+          <SiCodechef className="text-white text-5xl font-logo" />
+          <Link to="#" className="text-2xl lg:text-4xl font-logo text-white">
             Recipe
           </Link>
         </div>
