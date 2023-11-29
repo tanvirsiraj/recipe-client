@@ -5,6 +5,7 @@ import RecipeDetailsCard from "./RecipeDetailsCard";
 
 const RecipeDetails = () => {
   const [recipes, setRecipes] = useState([]);
+
   const axiosSecure = useAxiosSecure();
 
   const { isPending, error, data } = useQuery({
@@ -32,7 +33,8 @@ const RecipeDetails = () => {
     return (
       <p className="text-center my-4">An error has occurred: {error.message}</p>
     );
-  console.log(recipes);
+  //   console.log(recipes);
+
   return (
     <div className="dark:bg-black py-10">
       <h2 className="text-center  text-3xl md:text-5xl font-semibold dark:text-white">

@@ -7,11 +7,13 @@ import SignUp from "../pages/Shared/SignUp/SignUp";
 import SavedRecipe from "../pages/SavedRecipe/SavedRecipe";
 import PrivateRoute from "./PrivateRoute";
 import UpdateRecipe from "../pages/Home/UpdateRecipe/UpdateRecipe";
+import NotFound from "../pages/NotFound/NotFound";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout></Layout>,
+    errorElement: <NotFound></NotFound>,
     children: [
       {
         path: "/",

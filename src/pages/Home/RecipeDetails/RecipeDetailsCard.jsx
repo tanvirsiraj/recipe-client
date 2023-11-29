@@ -1,14 +1,16 @@
 import { PropTypes } from "prop-types";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { AuthContext } from "../../../Context/AuthProvider";
+import useSavedRecipe from "../../../hooks/useSavedRecipe";
 
 const RecipeDetailsCard = ({ recipe }) => {
   const axiosSecure = useAxiosSecure();
   const { user } = useContext(AuthContext);
+  const [disabled, setDisabled] = useState(false);
+  const [savedRecipe] = useSavedRecipe();
 
   const {
     _id,
@@ -20,7 +22,13 @@ const RecipeDetailsCard = ({ recipe }) => {
     mealType,
   } = recipe;
   //   console.log(recipe);
-  const [disabled, setDisabled] = useState(false);
+
+  useEffect(() => {
+    const filterData = savedRecipe.find((sRecipe) => sRecipe.id === recipe._id);
+    if (filterData) {
+      setDisabled(true);
+    }
+  }, [savedRecipe, recipe._id]);
 
   const handleSavedRecipe = (id) => {
     console.log(id);
@@ -109,6 +117,7 @@ const RecipeDetailsCard = ({ recipe }) => {
 
 RecipeDetailsCard.propTypes = {
   recipe: PropTypes.object,
+  savedRecipes: PropTypes.array,
   img: PropTypes.string,
   recipeName: PropTypes.string,
   ingredients: PropTypes.string,

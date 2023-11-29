@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import "./CreateRecipe.css";
 
 const CreateRecipe = () => {
   const axiosSecure = useAxiosSecure();
@@ -63,7 +64,7 @@ const CreateRecipe = () => {
     <div>
       <div className="hero relative dark:bg-black ">
         <div className="overlay m-0 p-0"></div>
-        <div className="bg-img-sign-log"></div>
+        <div className="bg-img-createRecipe"></div>
         <div className="py-32 z-10 ">
           <div className="w-[320px] md:w-[768px] lg:w-[1152px] text-center ">
             <form

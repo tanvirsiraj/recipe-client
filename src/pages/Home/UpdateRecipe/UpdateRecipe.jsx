@@ -2,6 +2,7 @@ import { useState } from "react";
 import Swal from "sweetalert2";
 import { useLoaderData } from "react-router-dom";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import "./UpdateRecipe.css";
 
 const UpdateRecipe = () => {
   const axiosSecure = useAxiosSecure();
@@ -65,7 +66,7 @@ const UpdateRecipe = () => {
     <div>
       <div className="hero relative dark:bg-black ">
         <div className="overlay m-0 p-0"></div>
-        <div className="bg-img-sign-log"></div>
+        <div className="bg-img-update"></div>
         <div className="py-32 z-10 ">
           <div className="w-[320px] md:w-[768px] lg:w-[1152px] text-center ">
             <form

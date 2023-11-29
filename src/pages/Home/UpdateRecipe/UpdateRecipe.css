@@ -1,0 +1,22 @@
+.bg-img-update {
+  inset: 0;
+  position: absolute;
+  background-image: url("../../../assets/img/banner/banner2.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  animation: bdanim 16s ease-in-out infinite;
+}
+
+@keyframes bdanim {
+  0% {
+    scale: 1;
+  }
+
+  70% {
+    scale: 2;
+  }
+  100% {
+    scale: 1;
+  }
+}
