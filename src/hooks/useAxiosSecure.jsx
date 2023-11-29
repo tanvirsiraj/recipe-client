@@ -2,7 +2,7 @@ import axios from "axios";
 
 const useAxiosSecure = () => {
   const axiosSecure = axios.create({
-    baseURL: "npm install axios",
+    baseURL: "http://localhost:5000",
   });
   return axiosSecure;
 };
