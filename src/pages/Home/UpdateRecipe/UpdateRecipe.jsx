@@ -1,17 +1,29 @@
 import { useState } from "react";
 import Swal from "sweetalert2";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { useLoaderData } from "react-router-dom";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
-const CreateRecipe = () => {
+const UpdateRecipe = () => {
   const axiosSecure = useAxiosSecure();
+  const loaderData = useLoaderData();
+  console.log(loaderData);
 
-  const [selectedOption, setSelectedOption] = useState("Breakfast");
+  const {
+    _id,
+    img,
+    recipeName,
+    ingredients,
+    instructions,
+    cookingTime,
+    mealType,
+  } = loaderData;
 
+  const [selectedOption, setSelectedOption] = useState(mealType);
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
   };
 
-  const handleCreateRecipe = (e) => {
+  const handleUpdateRecipe = (e) => {
     e.preventDefault();
     const form = e.target;
     const img = form.img.value;
@@ -20,16 +32,7 @@ const CreateRecipe = () => {
     const instructions = form.instructions.value;
     const cookingTime = form.cookingTime.value;
 
-    console.log(
-      img,
-      recipeName,
-      ingredients,
-      instructions,
-      cookingTime,
-      selectedOption
-    );
-
-    const recipe = {
+    const updatedRecipe = {
       img,
       recipeName,
       ingredients,
@@ -37,19 +40,17 @@ const CreateRecipe = () => {
       cookingTime,
       mealType: selectedOption,
     };
-    console.log(recipe);
+    console.log(updatedRecipe);
 
-    // sending new book to server
-
+    // updating recipe
     axiosSecure
-      .post("/createRecipe", recipe)
+      .put(`createRecipe/${_id}`, updatedRecipe)
       .then((res) => {
-        if (res.data.insertedId) {
-          form.reset();
+        if (res.data.modifiedCount > 0) {
           Swal.fire({
             position: "top-center",
             icon: "success",
-            title: "Recipe created successfully",
+            title: "Recipe Updated",
             showConfirmButton: false,
             timer: 1500,
           });
@@ -59,6 +60,7 @@ const CreateRecipe = () => {
         console.log(error);
       });
   };
+
   return (
     <div>
       <div className="hero relative dark:bg-black ">
@@ -67,7 +69,7 @@ const CreateRecipe = () => {
         <div className="py-32 z-10 ">
           <div className="w-[320px] md:w-[768px] lg:w-[1152px] text-center ">
             <form
-              onSubmit={handleCreateRecipe}
+              onSubmit={handleUpdateRecipe}
               className="card-body bg-[#ffffff7b] dark:bg-[#0000006d] shadow-lg border-2 border-primary-color dark:border-black rounded mx-2 lg:mx-0  px-2 md:px-6"
             >
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
@@ -79,6 +81,7 @@ const CreateRecipe = () => {
                   </label>
                   <input
                     type="text"
+                    defaultValue={img}
                     name="img"
                     placeholder="image url..."
                     className="bg-transparent border-b border-[#5958584b] dark:border-white p-2 outline-none text-black placeholder:text-black dark:placeholder:text-white dark:text-white"
@@ -93,6 +96,7 @@ const CreateRecipe = () => {
                   </label>
                   <input
                     type="text"
+                    defaultValue={recipeName}
                     name="recipeName"
                     placeholder="recipe name..."
                     className="bg-transparent border-b border-[#5958584b] dark:border-white p-2 outline-none text-black placeholder:text-black dark:placeholder:text-white dark:text-white"
@@ -108,6 +112,7 @@ const CreateRecipe = () => {
 
                   <textarea
                     placeholder="ingredients..."
+                    defaultValue={ingredients}
                     name="ingredients"
                     className="textarea  textarea-lg h-full w-full bg-[#ffffff56] placeholder:text-black dark:placeholder:text-white dark:bg-[#0000004d] text-black  dark:text-white text-sm "
                     required
@@ -122,6 +127,7 @@ const CreateRecipe = () => {
 
                   <textarea
                     placeholder="instructions..."
+                    defaultValue={instructions}
                     name="instructions"
                     className="textarea  textarea-lg w-full h-full bg-[#ffffff56] placeholder:text-black dark:placeholder:text-white dark:bg-[#0000004d] dark:text-white text-sm"
                     required
@@ -137,6 +143,7 @@ const CreateRecipe = () => {
                   <input
                     type="number"
                     name="cookingTime"
+                    defaultValue={cookingTime}
                     placeholder="cooking time (minutes)..."
                     className="bg-transparent border-b border-[#5958584b] dark:border-white p-2 outline-none text-black placeholder:text-black dark:placeholder:text-white dark:text-white"
                     required
@@ -173,7 +180,7 @@ const CreateRecipe = () => {
                   type="submit"
                   className="btn  bg-primary-color border-none duration-300 text-white  hover:bg-black  hover:text-white text-lg md:text-xl capitalize font-semibold add-btn dark:bg-white dark:text-black"
                 >
-                  Create Recipe
+                  Update Recipe
                 </button>
               </div>
             </form>
@@ -184,4 +191,4 @@ const CreateRecipe = () => {
   );
 };
 
-export default CreateRecipe;
+export default UpdateRecipe;

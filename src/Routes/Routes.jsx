@@ -5,6 +5,8 @@ import CreateRecipe from "../pages/CreateRecipe/CreateRecipe";
 import SignIn from "../pages/Shared/SignIn/SignIn";
 import SignUp from "../pages/Shared/SignUp/SignUp";
 import SavedRecipe from "../pages/SavedRecipe/SavedRecipe";
+import PrivateRoute from "./PrivateRoute";
+import UpdateRecipe from "../pages/Home/UpdateRecipe/UpdateRecipe";
 
 const router = createBrowserRouter([
   {
@@ -17,7 +19,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/createRecipe",
-        element: <CreateRecipe></CreateRecipe>,
+        element: (
+          <PrivateRoute>
+            <CreateRecipe></CreateRecipe>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/savedRecipes",
@@ -30,6 +36,16 @@ const router = createBrowserRouter([
       {
         path: "/signup",
         element: <SignUp></SignUp>,
+      },
+      {
+        path: "/createRecipe/:id",
+        element: (
+          <PrivateRoute>
+            <UpdateRecipe></UpdateRecipe>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/createRecipe/${params.id}`),
       },
     ],
   },
