@@ -51,7 +51,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/createRecipe/${params.id}`),
+          fetch(
+            `https://recipe-server-gray.vercel.app/createRecipe/${params.id}`
+          ),
       },
     ],
   },
