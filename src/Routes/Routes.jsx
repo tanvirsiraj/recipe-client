@@ -27,7 +27,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/savedRecipes",
-        element: <SavedRecipe></SavedRecipe>,
+        element: (
+          <PrivateRoute>
+            <SavedRecipe></SavedRecipe>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/signin",
@@ -38,7 +42,7 @@ const router = createBrowserRouter([
         element: <SignUp></SignUp>,
       },
       {
-        path: "/createRecipe/:id",
+        path: "/updateRecipe/:id",
         element: (
           <PrivateRoute>
             <UpdateRecipe></UpdateRecipe>

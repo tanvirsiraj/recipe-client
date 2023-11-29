@@ -1,8 +1,15 @@
 import { PropTypes } from "prop-types";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 
+import Swal from "sweetalert2";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { AuthContext } from "../../../Context/AuthProvider";
+
 const RecipeDetailsCard = ({ recipe }) => {
+  const axiosSecure = useAxiosSecure();
+  const { user } = useContext(AuthContext);
+
   const {
     _id,
     img,
@@ -17,7 +24,37 @@ const RecipeDetailsCard = ({ recipe }) => {
 
   const handleSavedRecipe = (id) => {
     console.log(id);
-    setDisabled(true);
+    const recipeData = {
+      id,
+      img,
+      recipeName,
+      ingredients,
+      instructions,
+      cookingTime,
+      mealType,
+      email: user.email,
+    };
+    console.log(recipe);
+
+    // sending new book to server
+
+    axiosSecure
+      .post("/savedRecipe", recipeData)
+      .then((res) => {
+        if (res.data.insertedId) {
+          Swal.fire({
+            position: "top-center",
+            icon: "success",
+            title: "Recipe saved successfully",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          setDisabled(true);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -26,13 +63,13 @@ const RecipeDetailsCard = ({ recipe }) => {
         <img src={img} alt="recipeImg" />
       </figure>
       {disabled ? (
-        <p className="absolute top-4 border-none left-4 text-white text-lg font-semibold">
+        <p className="absolute top-4 border-none left-4 text-white text-lg font-semibold bg-[#000000ac] py-1 px-4 rounded">
           Saved
         </p>
       ) : (
         <Link
           onClick={() => handleSavedRecipe(_id)}
-          className="btn bg-primary-color text-white font-semibold text-lg hover:bg-black absolute top-4 border-none left-4"
+          className="btn bg-primary-color text-white font-semibold text-lg hover:bg-black absolute top-4 border-none left-4 rounded"
         >
           Save Recipe
         </Link>
@@ -58,7 +95,7 @@ const RecipeDetailsCard = ({ recipe }) => {
         <div className="flex flex-col items-center">
           <div className="flex flex-col items-center">
             <Link
-              to={`/createRecipe/${_id}`}
+              to={`/updateRecipe/${_id}`}
               className="btn bg-primary-color text-white font-semibold text-lg hover:bg-black "
             >
               Update Recipe
