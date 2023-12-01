@@ -45,7 +45,7 @@ const UpdateRecipe = () => {
 
     // updating recipe
     axiosSecure
-      .put(`createRecipe/${_id}`, updatedRecipe)
+      .put(`updateRecipe/${_id}`, updatedRecipe)
       .then((res) => {
         if (res.data.modifiedCount > 0) {
           Swal.fire({

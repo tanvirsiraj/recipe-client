@@ -15,7 +15,7 @@ const SavedRecipeCard = ({ savedRecipe, handleDeleteRecipe }) => {
   return (
     <div className="card bg-white border rounded-lg shadow-lg relative">
       <figure>
-        <img src={img} alt="recipeImg" />
+        <img src={img} className="h-[300px] w-full" alt="recipeImg" />
       </figure>
 
       <div className="card-body  px-4">

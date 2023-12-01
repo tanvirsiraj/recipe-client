@@ -26,8 +26,8 @@ const SavedRecipe = () => {
 
   if (isPending) {
     return (
-      <div className="max-w-6xl mx-auto md:py-40 flex justify-center ">
-        <span className="loading  loading-spinner loading-lg text-primary-color dark:text-white"></span>
+      <div className="max-w-6xl mx-auto md:pt-40 flex justify-center  md:pb-60">
+        <span className="loading  loading-spinner loading-lg text-primary-color dark:text-white md:pb-20"></span>
       </div>
     );
   }

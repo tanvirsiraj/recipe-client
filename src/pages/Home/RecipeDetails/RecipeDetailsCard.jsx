@@ -68,7 +68,7 @@ const RecipeDetailsCard = ({ recipe }) => {
   return (
     <div className="card bg-white border rounded-lg shadow-lg relative">
       <figure>
-        <img src={img} alt="recipeImg" />
+        <img src={img} className="h-[300px] w-full" alt="recipeImg" />
       </figure>
       {disabled ? (
         <p className="absolute top-4 border-none left-4 text-white text-lg font-semibold bg-[#000000ac] py-1 px-4 rounded">

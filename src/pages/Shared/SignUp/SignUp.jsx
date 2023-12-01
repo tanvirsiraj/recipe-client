@@ -14,7 +14,7 @@ const SignUp = () => {
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
-    const photoUrl = form.photo.value;
+    const photoUrl = form.photoUrl.value;
     const email = form.email.value;
     const password = form.password.value;
 
